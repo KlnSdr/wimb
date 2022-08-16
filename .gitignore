@@ -1,0 +1,6 @@
+node_modules/
+
+*.js
+!lib/js/html5-qrcode.js
+!docs/**/*.js
+docs/**/*.ts

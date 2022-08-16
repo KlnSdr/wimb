@@ -1,0 +1,41 @@
+.textInput {
+    margin: 5px 5px;
+    margin-left: 5px;
+    margin-right: 4px;
+    padding: 0px;
+}
+
+.textInput input {
+    background-color: var(--lighter);
+    margin-top: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
+    height: 20px;
+    color: var(--font);
+    border: var(--lighter) 2px solid;
+    width: calc(100% - 15px);
+}
+
+.textInput input:focus {
+    border: var(--accent) 2px solid;
+}
+
+.textInput label {
+    /* display: inline-block; */
+}
+
+.textInput i {
+    margin: 0px;
+    font-size: larger;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+
+.textInput p {
+    padding: 0px;
+    margin: 0px;
+    width: 10px;
+    display: inline-block;
+}

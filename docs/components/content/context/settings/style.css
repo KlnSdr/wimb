@@ -1,0 +1,74 @@
+.settingsButton {
+    margin: 5px;
+    margin-bottom: 0px;
+    width: calc(100% - 10px);
+}
+
+.content img {
+    width: 50%;
+    margin-left: 25%;
+}
+
+.settingsContainer {
+    margin: 5px;
+    border: var(--lighter) 2px solid;
+    border-radius: 5px;
+}
+
+.settingsContainer label,
+.settingsContainer a {
+    font-size: small;
+    color: var(--accent);
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.settingsContainer table {
+    width: calc(100% - 5px);
+    margin: 5px;
+}
+
+.settingsContainer table td {
+    width: 50%;
+}
+
+.settingsConfirmText {
+    text-align: center;
+    margin-top: 23px;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.headlineChangelog {
+    text-decoration: underline;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.settingsContainer ul {
+    margin: 5px;
+}
+
+.settingsContainer ul li {
+    font-size: small;
+    list-style: none;
+    margin-left: 5px;
+}
+
+.change {
+    margin-left: 30px !important;
+    list-style-type: disc !important;
+}
+
+details > summary {
+    list-style: none;
+}
+details > summary::-webkit-details-marker {
+    display: none;
+}
+

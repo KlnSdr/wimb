@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+:root {
+    /* https://coolors.co/22223b-4a4e69-9a8c98-c9ada7-f2e9e4 */
+    --font: #f2e9e4;
+    --background: #22223b;
+    --lighter: #4a4e69;
+    --accent: #9a8c98;
+}
+
+* {
+    font-family: 'Oswald', Arial, Helvetica, sans-serif;
+    padding: 0px;
+    margin: 0px;
+    font-size: medium;
+}
+
+*:focus {
+    outline: none;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--font);
+}
+
+button {
+    background-color: var(--lighter);
+    color: var(--font);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.bttnFullWidth {
+    width: calc(100% - 10px);
+    margin-top: 5px;
+}
+
+.floatRight {
+    float: right;
+}
+

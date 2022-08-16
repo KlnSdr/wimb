@@ -1,0 +1,13 @@
+table {
+    width: 100%;
+}
+
+td:first-child {
+    width: 1%;
+    white-space: nowrap;
+}
+
+.deleteItem {
+    margin: 5px;
+    color: red;
+}

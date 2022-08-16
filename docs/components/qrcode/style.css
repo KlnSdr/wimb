@@ -1,0 +1,7 @@
+#qrContainer {
+    text-align: center;
+}
+
+#qrContainer img {
+    display: initial !important;
+}

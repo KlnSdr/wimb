@@ -1,0 +1,31 @@
+.content {
+    margin-bottom: 80px;
+    padding-top: 36px;
+}
+
+h2 {
+    text-align: center;
+    position: fixed;
+    top: 0;
+    display: inline-block;
+    width: 100%;
+    background-color: var(--background);
+    box-shadow: 0 0 5px 2px var(--background);
+    font-size: x-large;
+}
+
+.settings {
+    z-index: 1;
+    color: var(--font);
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    background-color: var(--background);
+    width: 36px;
+    height: 36px;
+    /* border: var(--lighter) 2px solid;
+    border-radius: 5px; */
+    border: none;
+    font-size: large;
+}
+
