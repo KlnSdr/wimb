@@ -76,8 +76,8 @@
     border: var(--lighter) 2px solid;
 }
 
-.modal-content ul {
-    list-style: none;
+.modal-content ul li {
+    margin-left: 15px;
 }
 
 /* Add Animation */
