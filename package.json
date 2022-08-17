@@ -1,5 +1,8 @@
 {
-  "devDependencies": {
-    "typescript": "^4.5.2"
-  }
+    "devDependencies": {
+        "typescript": "^4.5.2"
+    },
+    "scripts": {
+        "deploy": "bash deploy.sh"
+    }
 }
