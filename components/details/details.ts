@@ -82,10 +82,12 @@ class Details {
         edom.body.rawElement.style.overflow = 'hidden';
     }
 
-    static close() {
+    static close(suppressCustom: boolean = false) {
         edom.findById('myModal')?.delete();
         edom.body.rawElement.style.overflow = '';
-        this._onClose();
+        if (!suppressCustom) {
+            this._onClose();
+        }
         this._onClose = () => {};
     }
 }

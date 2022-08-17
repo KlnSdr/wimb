@@ -1,7 +1,11 @@
 class Settings {
-    static versionNumbers: string[] = ['0.0.1', '1.0.0'];
+    static versionNumbers: string[] = ['0.0.1', '1.0.0', '1.0.1'];
 
-    static rlab: string[] = ['just a test', "and that's the way the news goes"];
+    static rlab: string[] = [
+        'just a test',
+        "and that's the way the news goes",
+        "and that's the way the news goes",
+    ];
 
     static changes: string[][] = [
         ['boilerplate testen'],
@@ -10,6 +14,10 @@ class Settings {
             'QR-Code generieren',
             'neue Taschen erstellen',
             'Daten lokal und remote speichern',
+        ],
+        [
+            'Anstriche werden in der PopUp-Ansicht dargestellt',
+            'Tascheninhalte können nachträglich verändert werden',
         ],
     ];
 

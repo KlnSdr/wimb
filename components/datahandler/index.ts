@@ -23,7 +23,7 @@ class Store {
 namespace Datahandler {
     export class local {
         public static get(key: string): obj {
-            return Store.get()[key] || { name: '', contents: [] };
+            return Store.get()[key] || { id: '', name: '', contents: [] };
         }
 
         public static set(key: string, data: obj) {
@@ -36,17 +36,19 @@ namespace Datahandler {
     export class remote {
         public static get(key: string): Promise<obj> {
             return new Promise<obj>((resolve) => {
-                remoteDB.read(key).then((data: string) => {
-                    resolve(JSON.parse(data));
+                remoteDB.read(key).then((data: obj) => {
+                    resolve(data);
                 });
             });
         }
 
         public static create(data: obj): string {
-            return remoteDB.write(data);
+            return remoteDB.write(data) as string;
         }
 
-        public static update(id: string, data: obj) {}
+        public static update(id: string, data: obj): Promise<obj> {
+            return remoteDB.write(data, true, id) as Promise<obj>;
+        }
     }
 }
 
@@ -56,6 +58,7 @@ class remoteDB {
     };
 
     private static isInitialized: boolean = false;
+    // @ts-expect-error firebase db no type 'cause inlcude via js
     private static database;
 
     private static init() {
@@ -63,24 +66,37 @@ class remoteDB {
             return;
         }
 
+        // @ts-expect-error firebase not defined 'cause include via js
         firebase.initializeApp(this.firebaseConfig);
+        // @ts-expect-error firebase not defined 'cause include via js
         this.database = firebase.database();
         window.onbeforeunload = () => {
+            // @ts-expect-error firebase not defined 'cause include via js
             firebase.database().goOffline();
         };
         this.isInitialized = true;
     }
 
-    public static write(data: obj): string {
+    public static write(
+        data: obj,
+        update: boolean = false,
+        id: string = ''
+    ): string | Promise<obj> {
         this.init();
-        let ref = this.database.ref(Store.appName + '/');
-        return ref.push(JSON.stringify(data)).key;
+        if (update) {
+            let ref = this.database.ref(Store.appName + '/' + id);
+            return ref.update(data);
+        } else {
+            let ref = this.database.ref(Store.appName + '/');
+            return ref.push(data).key;
+        }
     }
 
-    public static read(id: string): Promise<string> {
-        return new Promise<string>((resolve) => {
+    public static read(id: string): Promise<obj> {
+        return new Promise<obj>((resolve) => {
             this.init();
             const ref = this.database.ref(Store.appName + '/' + id);
+            // @ts-expect-error implicit any type of data
             ref.once('value', (data) => {
                 resolve(data.val());
             });

@@ -1,7 +1,21 @@
 class addBag {
     private static itemList: string[] = [];
 
+    public static isModify: boolean = false;
+    public static bagData: { id: string; name: string; contents: string[] } = {
+        id: '',
+        name: '',
+        contents: [],
+    };
+
     public static render() {
+        if (this.isModify) {
+            this.itemList = this.bagData.contents;
+        } else {
+            this.bagData = { id: '', name: '', contents: [] };
+            this.itemList = [];
+        }
+
         edom.fromTemplate(
             [
                 Input.instruction('Name der Tasche', 'nameOfBag'),
@@ -42,6 +56,10 @@ class addBag {
                 },
             ],
             edom.findById('content')
+        );
+
+        (edom.findById('nameOfBag') as edomInputElement).setContent(
+            this.bagData.name
         );
     }
 
@@ -106,14 +124,19 @@ class addBag {
             contents: this.itemList,
         };
 
-        const id: string = Datahandler.remote.create(data);
+        const id: string = !this.isModify
+            ? Datahandler.remote.create(data)
+            : this.bagData.id;
 
         Datahandler.local.set(id, data);
 
-        qrcode.gen(id, name);
-
-        this.itemList = [];
-
-        Content.switchContext('addBag', { forceReload: true });
+        if (this.isModify) {
+            Datahandler.remote.update(id, data).then((result) => {
+                Content.switchContext('scanner');
+            });
+        } else {
+            qrcode.gen(id, name);
+            Content.switchContext('addBag', { forceReload: true });
+        }
     }
 }
