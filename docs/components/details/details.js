@@ -67,11 +67,13 @@ class Details {
         onShow();
         edom.body.rawElement.style.overflow = 'hidden';
     }
-    static close() {
+    static close(suppressCustom = false) {
         var _a;
         (_a = edom.findById('myModal')) === null || _a === void 0 ? void 0 : _a.delete();
         edom.body.rawElement.style.overflow = '';
-        this._onClose();
+        if (!suppressCustom) {
+            this._onClose();
+        }
         this._onClose = () => { };
     }
 }

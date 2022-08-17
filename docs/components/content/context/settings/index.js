@@ -90,8 +90,12 @@ class Settings {
         return changelog;
     }
 }
-Settings.versionNumbers = ['0.0.1', '1.0.0'];
-Settings.rlab = ['just a test', "and that's the way the news goes"];
+Settings.versionNumbers = ['0.0.1', '1.0.0', '1.0.1'];
+Settings.rlab = [
+    'just a test',
+    "and that's the way the news goes",
+    "and that's the way the news goes",
+];
 Settings.changes = [
     ['boilerplate testen'],
     [
@@ -99,5 +103,9 @@ Settings.changes = [
         'QR-Code generieren',
         'neue Taschen erstellen',
         'Daten lokal und remote speichern',
+    ],
+    [
+        'Anstriche werden in der PopUp-Ansicht dargestellt',
+        'Tascheninhalte können nachträglich verändert werden',
     ],
 ];

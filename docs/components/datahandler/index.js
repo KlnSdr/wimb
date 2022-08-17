@@ -19,7 +19,7 @@ var Datahandler;
 (function (Datahandler) {
     class local {
         static get(key) {
-            return Store.get()[key] || { name: '', contents: [] };
+            return Store.get()[key] || { id: '', name: '', contents: [] };
         }
         static set(key, data) {
             let store = Store.get();
@@ -32,14 +32,16 @@ var Datahandler;
         static get(key) {
             return new Promise((resolve) => {
                 remoteDB.read(key).then((data) => {
-                    resolve(JSON.parse(data));
+                    resolve(data);
                 });
             });
         }
         static create(data) {
             return remoteDB.write(data);
         }
-        static update(id, data) { }
+        static update(id, data) {
+            return remoteDB.write(data, true, id);
+        }
     }
     Datahandler.remote = remote;
 })(Datahandler || (Datahandler = {}));
@@ -48,22 +50,32 @@ class remoteDB {
         if (this.isInitialized) {
             return;
         }
+        // @ts-expect-error firebase not defined 'cause include via js
         firebase.initializeApp(this.firebaseConfig);
+        // @ts-expect-error firebase not defined 'cause include via js
         this.database = firebase.database();
         window.onbeforeunload = () => {
+            // @ts-expect-error firebase not defined 'cause include via js
             firebase.database().goOffline();
         };
         this.isInitialized = true;
     }
-    static write(data) {
+    static write(data, update = false, id = '') {
         this.init();
-        let ref = this.database.ref(Store.appName + '/');
-        return ref.push(JSON.stringify(data)).key;
+        if (update) {
+            let ref = this.database.ref(Store.appName + '/' + id);
+            return ref.update(data);
+        }
+        else {
+            let ref = this.database.ref(Store.appName + '/');
+            return ref.push(data).key;
+        }
     }
     static read(id) {
         return new Promise((resolve) => {
             this.init();
             const ref = this.database.ref(Store.appName + '/' + id);
+            // @ts-expect-error implicit any type of data
             ref.once('value', (data) => {
                 resolve(data.val());
             });

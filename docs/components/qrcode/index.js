@@ -5,6 +5,7 @@ class qrcode {
             {
                 tag: 'button',
                 text: 'herunterladen',
+                classes: ['bttnFullWidth'],
                 handler: [
                     {
                         type: 'click',
